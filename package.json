@@ -15,6 +15,7 @@
         "vue": "^3.2.45"
     },
     "dependencies": {
+        "eslint": "^8.28.0",
         "vue-router": "^4.1.6"
     }
 }

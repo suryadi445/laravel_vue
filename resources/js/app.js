@@ -6,14 +6,20 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import router from './router';
+import router from './router/index.js';
 
 const app = createApp({
     data() {
         return {
             title: 'Laravel 9',
         }
-    }
+    },
+    computed: {
+        nama() {
+            // We will see what `params` is shortly
+            return this.$route.params.nama
+        },
+    },
 });
 
 import ExampleComponent from './components/ExampleComponent.vue';
