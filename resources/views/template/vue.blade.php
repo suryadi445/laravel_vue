@@ -16,7 +16,7 @@
         <h2 v-text="title + ' + Vue Js'"></h2>
 
         <header-component></header-component>
-        <example-component></example-component>
+        <router-view></router-view>
         <footer-component></footer-component>
     </div>
 
