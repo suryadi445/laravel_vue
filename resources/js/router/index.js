@@ -12,6 +12,7 @@ const routes = [
 ]
 
 const router = createRouter({
+    linkActiveClass: 'active',
     history: createWebHistory(),
     routes, // short for `routes: routes`
 })
