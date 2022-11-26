@@ -5,9 +5,9 @@ import NotFound from '../pages/NotFound.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
-    { path: '/home', component: Home },
-    { path: '/about', component: About },
-    { path: '/user/:nama?', component: User },
+    { name: 'Home', path: '/home', component: Home },
+    { name: 'About', path: '/about', component: About },
+    { name: 'User', path: '/user/:nama?', component: User, props: true },
     { path: "/:catchAll(.*)", component: NotFound },
 ]
 
