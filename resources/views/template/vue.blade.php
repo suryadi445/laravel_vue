@@ -13,7 +13,7 @@
 <body>
 
     <div id="app">
-        <h2>Laravel + Vue JS</h2>
+        <h2 v-text="title + ' + Vue Js'"></h2>
 
         <header-component></header-component>
         <example-component></example-component>

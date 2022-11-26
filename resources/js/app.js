@@ -13,7 +13,13 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({
+    data() {
+        return {
+            title: 'Laravel 9',
+        }
+    }
+});
 
 import ExampleComponent from './components/ExampleComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
