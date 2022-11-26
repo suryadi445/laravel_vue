@@ -7,7 +7,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     { path: '/home', component: Home },
     { path: '/about', component: About },
-    { path: '/user/:nama', component: User },
+    { path: '/user/:nama?', component: User },
     { path: "/:catchAll(.*)", component: NotFound },
 ]
 

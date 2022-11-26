@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('/{slug1}/{slug2}', function () {
+Route::get('/{any}', function () {
     return view('template.vue');
-});
+})->where('any', '.*');
