@@ -7,21 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel Vue</title>
 
-    <style>
-        body {
-            margin: 15%;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
 
     <div id="app">
         <h2>Laravel + Vue JS</h2>
-    </div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+        <header-component></header-component>
+        <example-component></example-component>
+        <footer-component></footer-component>
+    </div>
 
 </body>
 
