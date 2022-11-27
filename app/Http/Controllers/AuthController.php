@@ -11,6 +11,6 @@ class AuthController extends Controller
     {
         $data = DB::table('users')->get();
 
-        dump($data);
+        return response()->json($data);
     }
 }
