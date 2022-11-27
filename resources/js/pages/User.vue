@@ -17,25 +17,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["nama"],
   data() {
     return {
-      users: [
-        {
-          id: 1,
-          name: "Suryadi",
-        },
-        {
-          id: 2,
-          name: "Khalisa",
-        },
-        {
-          id: 3,
-          name: "M.Hafiz",
-        },
-      ],
+      users: [],
     };
+  },
+  mounted() {
+    axios.get("api/user").then((response) => {
+      this.users = response.data;
+    });
   },
   methods: {
     profil_name(nama) {
