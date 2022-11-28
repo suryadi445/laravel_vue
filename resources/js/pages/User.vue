@@ -1,6 +1,6 @@
 <template>
-  <section v-if="nama">
-    <h1>Hello, {{ nama }}</h1>
+  <section v-if="id">
+    <h1>Hello, {{ detailuser.name }}</h1>
 
     <router-link :to="{ name: 'User' }">Kembali</router-link>
   </section>
@@ -10,7 +10,7 @@
     <ol>
       <li v-for="user in users" :key="user.id">
         <!-- <router-link :to="profil_name(user.name)">{{ user.name }}</router-link> -->
-        <a href="" @click.prevent="lihatUser(user.name)">{{ user.name }}</a>
+        <a href="" @click.prevent="lihatUser(user.id)">{{ user.name }}</a>
       </li>
     </ol>
   </section>
@@ -20,23 +20,37 @@
 import axios from "axios";
 
 export default {
-  props: ["nama"],
+  props: ['id'],
   data() {
     return {
       users: [],
-    };
+      detailuser: {},
+    }
+  },
+  watch: {
+    '$route' : "getUsers"
   },
   mounted() {
-    axios.get("api/user").then((response) => {
-      this.users = response.data;
-    });
+    this.getUsers();
   },
   methods: {
+    getUsers() {
+      axios.get("api/user").then((response) => {
+        this.users = response.data;
+      });
+
+      if(this.id) {
+        this.detailuser = this.users.filter(item => item.id == this.id)[0];
+      }
+    },
     profil_name(nama) {
       return "/user/" + nama.toLowerCase();
     },
-    lihatUser(nama) {
-      this.$router.push("/user/" + nama.toLowerCase());
+    lihatUser(id) {
+      this.$router.push({
+        name: "User",
+        params: { id: id },
+      });
     },
   },
 };
