@@ -43,7 +43,9 @@ export default {
       axios
         .post("/api/user", this.form)
         .then((response) => {
-          console.log(response);
+          this.$router.push({
+            name: "User",
+          });
         })
         .catch((error) => {
           console.log(error);

@@ -32,6 +32,10 @@ class AuthController extends Controller
             'email' => $request->email
         ]);
 
-        return response()->json($data);
+        return response()->json([
+            'status' => true,
+            'message' => 'Registrasi berhasil',
+            'data' => $data
+        ]);
     }
 }
