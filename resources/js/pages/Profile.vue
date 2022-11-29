@@ -1,5 +1,12 @@
 <template>
-  <section>
+  <section v-if="id">
+    <h1>Hello, {{ detailuser.name }}</h1>
+    <h5>Email : {{ detailuser.email }}</h5>
+
+    <router-link :to="{ name: 'User' }">Kembali</router-link>
+  </section>
+
+  <section v-else>
     <h1>Daftar List</h1>
     <ol>
       <li v-for="user in users" :key="user.id">
@@ -14,9 +21,10 @@
 import axios from "axios";
 
 export default {
+  props: ["id"],
   data() {
     return {
-      users: [],
+      detailuser: {},
     };
   },
   mounted() {
@@ -24,17 +32,8 @@ export default {
   },
   methods: {
     getUsers() {
-      axios.get("api/user").then((response) => {
-        this.users = response.data;
-      });
-    },
-    profil_name(nama) {
-      return "/user/" + nama.toLowerCase();
-    },
-    lihatUser(id) {
-      this.$router.push({
-        name: "Profile",
-        params: { id: id },
+      axios.get("/api/user/" + this.id).then((res) => {
+        this.detailuser = res.data;
       });
     },
   },

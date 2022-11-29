@@ -13,4 +13,11 @@ class AuthController extends Controller
 
         return response()->json($data);
     }
+
+    public function show($id)
+    {
+        $data = DB::table('users')->where('id', $id)->first();
+
+        return response()->json($data);
+    }
 }
