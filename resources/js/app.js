@@ -6,6 +6,8 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 import router from './router/index.js';
 
 const app = createApp({
@@ -22,6 +24,26 @@ const app = createApp({
     },
 });
 
+const options = {
+    position: 'top-right',
+    newestOnTop: true,
+    maxToasts: 20,
+    transition: 'Vue-Toastification__bounce',
+    transitionDuration: 750,
+    draggable: true,
+    draggablePercent: 0.6,
+    pauseOnFocusLoss: true,
+    pauseOnHover: true,
+    closeOnClick: true,
+    timeout: 5000,
+    container: document.body,
+    toastClassName: [],
+    bodyClassName: [],
+    hideProgressBar: false,
+    hideCloseButton: false,
+    icon: true
+};
+
 import ExampleComponent from './components/ExampleComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
@@ -29,5 +51,6 @@ app.component('example-component', ExampleComponent);
 app.component('header-component', HeaderComponent);
 app.component('footer-component', FooterComponent);
 
+app.use(Toast, options);
 app.use(router);
 app.mount('#app');

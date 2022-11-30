@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios";
+import { useToast } from "vue-toastification";
 
 export default {
   data() {
@@ -38,17 +39,27 @@ export default {
       },
     };
   },
+  setup() {
+    const toast = useToast();
+
+    return { toast };
+  },
   methods: {
     register() {
       axios
         .post("/api/user", this.form)
         .then((response) => {
-          this.$router.push({
-            name: "User",
-          });
+          console.log(response.data.message);
+          if (response.status) {
+            this.$router.push({
+              name: "User",
+            });
+            this.toast.success(response.data.message);
+          }
         })
         .catch((error) => {
           console.log(error);
+          this.toast.error("Error save data");
         });
     },
   },
