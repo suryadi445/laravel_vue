@@ -5,6 +5,9 @@
       <div class="input-group">
         <label for="name">Nama</label>
         <input type="text" name="name" id="name" v-model="form.name" />
+        <div class="errors" v-if="error.name">
+          {{ error.name[0] }}
+        </div>
       </div>
       <div class="input-group">
         <label for="password">Password</label>
@@ -14,10 +17,16 @@
           id="password"
           v-model="form.password"
         />
+        <div class="errors" v-if="error.password">
+          {{ error.password[0] }}
+        </div>
       </div>
       <div class="input-group">
         <label for="email">Email</label>
         <input type="text" name="email" id="email" v-model="form.email" />
+        <div class="errors" v-if="error.email">
+          {{ error.email[0] }}
+        </div>
       </div>
 
       <button type="submit">Register</button>
@@ -37,6 +46,7 @@ export default {
         password: "",
         email: "",
       },
+      error: {},
     };
   },
   setup() {
@@ -58,8 +68,10 @@ export default {
           }
         })
         .catch((error) => {
-          console.log(error);
-          this.toast.error("Error save data");
+          if (error.response.status == 422) {
+            this.error = error.response.data.errors;
+            this.toast.error("Error save data");
+          }
         });
     },
   },
@@ -73,5 +85,9 @@ export default {
 
 label {
   margin-right: 10px;
+}
+
+.errors {
+  color: red;
 }
 </style>
